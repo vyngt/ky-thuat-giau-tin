@@ -3,6 +3,7 @@ Steganography
 """
 
 
-__all__ = ["decoder", "encoder"]
+__all__ = ["Decoder", "Encoder"]
 
-from . import decoder, encoder
+from .encoder import Encoder
+from .decoder import Decoder
