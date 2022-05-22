@@ -12,11 +12,8 @@ class Decoder:
         self.__image_path = image_path
         self.__data = ""
 
-    def __str__(self):
-        return f"Decoder(image={self.__image_path} at {hex(id(self))}"
-
     def __repr__(self):
-        return self.__str__()
+        return f"Decoder(image={self.__image_path} at {hex(id(self))}"
 
     def __get_image(self):
         return Image.open(self.__image_path, "r")
