@@ -49,10 +49,13 @@ class Decoder:
     def decode(self, force=False):
         if force or not self.__data:
             return self.__decode()
+
+        if self.__data:
+            raise Exception("Đã giải mã, thay vào đó hãy dùng get_data()")
         return self.__decode()
 
     def get_data(self):
         if self.__data:
             return self.__data
 
-        return "None"
+        return "Không có dữ liệu hoặc chưa decode."
