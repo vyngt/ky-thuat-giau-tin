@@ -40,7 +40,13 @@ class Encoder:
         self.__m_image = self.__get_copy_image(image)
 
     def __repr__(self):
-        return f"Encoder(message={self.__message[:3]}... image={self.__image_path}) at {hex(id(self))}"
+        return "<%s.%s message=%s... image=%s at 0x%X>" % (
+            self.__class__.__module__,
+            self.__class__.__name__,
+            self.__message[:3],
+            self.__image_path,
+            id(self),
+        )
 
     def __convert_to_8bit(self):
         """Chuyển đổi các ký tự của thông điệp sang dạng 8bit."""
@@ -57,7 +63,7 @@ class Encoder:
             + f".{self.__image_path.split('.')[-1]}"
         )
 
-    def __pixels_modifier(self):
+    def __modify_pixels(self):
         """Điều chỉnh các pixel ảnh"""
         len_data = len(self.__m_8b)
         pixels: Iterator[tuple[int]] = iter(self.__m_image.getdata())
@@ -103,7 +109,7 @@ class Encoder:
         w = self.__m_image.size[0]
         (x, y) = (0, 0)
 
-        for pixel in self.__pixels_modifier():
+        for pixel in self.__modify_pixels():
 
             # Áp pixel đã được điều chỉnh vào ảnh mới.
             self.__m_image.putpixel((x, y), pixel)
