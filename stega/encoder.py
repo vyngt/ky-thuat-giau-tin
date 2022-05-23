@@ -1,10 +1,11 @@
 """
-encoder module
+Trình mã hóa.
 """
 from typing import Iterator
 from PIL import Image
 from string import ascii_letters
 from random import choices
+from .cryptor import encrypt_message
 
 
 class Encoder:
@@ -14,18 +15,19 @@ class Encoder:
 
     ---
     Cách hoạt động:
-        - B1: Chuyển đổi các ký tự của thông điệp sang dạng 8-bit nhị phân
-        - B2: Đọc 3 pixels ảnh.
+        - B1: Mã hóa `thông điệp` thành `bản mã`.
+        - B2: Chuyển đổi các ký tự của `bản mã` sang dạng 8-bit nhị phân
+        - B3: Đọc 3 pixels ảnh.
         Mỗi pixel ảnh gồm 3 giá trị RGB, để lưu được 1 ký tự cần 8 bit nhị phân,
         nghĩa là cần 8 giá trị RGB, cho nên phải dùng 3 pixel ảnh để lưu trữ 1 ký tự.
-        - B3: Chỉnh sửa giá trị RGB tương ứng với ký tự ở dạng nhị phân.
+        - B4: Chỉnh sửa giá trị RGB tương ứng với ký tự ở dạng nhị phân.
         Mỗi bit nhị phân là 0 hoặc 1, ta sẽ chỉnh sửa tương ứng như sau:
                 - Chỉnh giá trị RGB thành số chẵn nếu bit nhị phân là 0. (Có thể +1 hoặc -1 hoặc để yên)
                 - Chỉnh giá trị RGB thành số lẻ nếu bit nhị phân là 1. (Có thể +1 hoặc -1 hoặc để yên)
-        - B4: Sau khi lưu trữ xong 1 ký tự, còn 1 giá trị RGB:
+        - B5: Sau khi lưu trữ xong 1 ký tự, còn 1 giá trị RGB:
                 - Nếu còn dữ liệu thì chỉnh thành số chẵn, quay lại B2
                 - Nếu không còn dữ liệu thì chỉnh thành số lẻ, sang B5.
-        - B5: Xuất ảnh có thông điệp.
+        - B6: Xuất ảnh có `bản mã`.
 
     ---
     Lưu ý về ảnh:
@@ -33,8 +35,8 @@ class Encoder:
         - Mỗi pixel ảnh bao gồm 3 giá trị: red(đỏ), green(xanh lá), blue(xanh trời) hay được biết đến là các giá trị RGB
         - Mỗi giá trị RGB thuộc [0, 255] nghĩa là: 0 <= x <= 255"""
 
-    def __init__(self, message: str, image: str):
-        self.__message = message
+    def __init__(self, message: str, key: str, image: str):
+        self.__ciphertext = encrypt_message(message, key).decode()
         self.__image_path = image
         self.__m_8b: list[str] = self.__convert_to_8bit()
         self.__m_image = self.__get_copy_image(image)
@@ -43,14 +45,14 @@ class Encoder:
         return "<%s.%s message=%s... image=%s at 0x%X>" % (
             self.__class__.__module__,
             self.__class__.__name__,
-            self.__message[:3],
+            self.__ciphertext[:7],
             self.__image_path,
             id(self),
         )
 
     def __convert_to_8bit(self):
-        """Chuyển đổi các ký tự của thông điệp sang dạng 8bit."""
-        return ["{0:08b}".format(ord(c), "b") for c in self.__message]
+        """Chuyển đổi các ký tự của bản mã sang dạng 8bit."""
+        return ["{0:08b}".format(ord(c), "b") for c in self.__ciphertext]
 
     def __get_copy_image(self, image_path: str):
         """Lấy 1 bản sao của ảnh gốc, để tránh chỉnh sửa ảnh gốc."""

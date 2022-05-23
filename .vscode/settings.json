@@ -1,3 +1,13 @@
 {
-  "cSpell.words": ["getdata", "putpixel", "stega", "Steganography"]
+  "cSpell.words": [
+    "ciphertext",
+    "cryptor",
+    "encryptor",
+    "fernet",
+    "getdata",
+    "putpixel",
+    "stega",
+    "Steganography",
+    "urandom"
+  ]
 }

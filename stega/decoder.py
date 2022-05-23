@@ -1,4 +1,11 @@
+"""
+Trình giải mã.
+"""
+
 from PIL import Image
+from .cryptor import decrypt_message
+from cryptography.exceptions import InvalidSignature
+from cryptography.fernet import InvalidToken
 
 
 class Decoder:
@@ -6,10 +13,16 @@ class Decoder:
     ---
     Trình giải mã: Giải mã ảnh số và lấy thông điệp.
 
+    ---
+        - B1: Trích xuất bản mã từ ảnh.
+        - B2: Dùng `key` để trích xuất thông điệp từ bản mã.
+        - B3: Xuất thông điệp(hay có thể gọi là bản rõ).
     """
 
-    def __init__(self, image_path: str):
-        self.__image_path = image_path
+    def __init__(self, key: str, image: str):
+        self.__image_path = image
+        self.__key = key
+        self.__ciphertext = ""
         self.__data = ""
 
     def __repr__(self):
@@ -23,7 +36,7 @@ class Decoder:
     def __get_image(self):
         return Image.open(self.__image_path, "r")
 
-    def __decode(self):
+    def __extract_data_from_image(self):
         img = self.__get_image()
         img_data = iter(img.getdata())
 
@@ -44,12 +57,22 @@ class Decoder:
                 else:
                     bin_str += "1"
 
-            self.__data += chr(int(bin_str, 2))
+            self.__ciphertext += chr(int(bin_str, 2))
             if pixels[-1] % 2 != 0:
-                return self.__data
+                return self.__ciphertext
+
+    def __decode(self):
+        self.__extract_data_from_image()
+        try:
+            self.__data = decrypt_message(
+                self.__ciphertext.encode(), self.__key
+            ).decode()
+        except (InvalidSignature, InvalidToken):
+            raise Exception("Sai key hoặc dữ liệu bị hỏng hoặc chương trình có vấn đề.")
+        return self.__data
 
     def decode(self, force=False):
-        if force or not self.__data:
+        if force or not self.__ciphertext or not self.__data:
             return self.__decode()
 
         if self.__data:

@@ -1,1 +1,3 @@
 Images for testing
+
+key for modified.png: vpic

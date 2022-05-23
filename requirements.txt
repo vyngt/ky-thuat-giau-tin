@@ -14,9 +14,11 @@
 
 -i https://pypi.org/simple
 
-#numpy==1.22.4; python_version >= '3.8'
+cffi==1.15.0
 
-#opencv-python==4.5.5.64
+cryptography==37.0.2
 
 pillow==9.1.1
+
+pycparser==2.21
 
