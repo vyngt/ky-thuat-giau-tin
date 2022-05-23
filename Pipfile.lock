@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b0935d17a2f3219313d2d2c1c70898abff74da26595617e34ccce7a90963d5c4"
+            "sha256": "541acf363645eae4096f2b4a28df9135ba5e8bcef58d46bc8eef320cfc34f750"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -152,6 +152,13 @@
         }
     },
     "develop": {
+        "altgraph": {
+            "hashes": [
+                "sha256:743628f2ac6a7c26f5d9223c91ed8ecbba535f506f4b6f558885a8a56a105857",
+                "sha256:ebf2269361b47d97b3b88e696439f6e4cbc607c17c51feb1754f90fb79839158"
+            ],
+            "version": "==0.17.2"
+        },
         "black": {
             "hashes": [
                 "sha256:06f9d8846f2340dfac80ceb20200ea5d1b3f181dd0556b47af4e8e0b24fa0a6b",
@@ -197,6 +204,13 @@
             "markers": "platform_system == 'Windows'",
             "version": "==0.4.4"
         },
+        "future": {
+            "hashes": [
+                "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
+            ],
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==0.18.2"
+        },
         "mypy-extensions": {
             "hashes": [
                 "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d",
@@ -211,6 +225,13 @@
             ],
             "version": "==0.9.0"
         },
+        "pefile": {
+            "hashes": [
+                "sha256:344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a"
+            ],
+            "markers": "sys_platform == 'win32'",
+            "version": "==2021.9.3"
+        },
         "platformdirs": {
             "hashes": [
                 "sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788",
@@ -218,6 +239,47 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.5.2"
+        },
+        "pyinstaller": {
+            "hashes": [
+                "sha256:29b3f17d75ff58b12db7b0116df1b3382c8345aefd500a177987eaf0599dec03",
+                "sha256:3c9bc373b4a4bf6d81b306b9918e290a3de582d7b50a0f6f4e837970a4db0c54",
+                "sha256:588f2840c27a8a7e1b1fa361f107a1060c5096b36d3c94c243b23687ee41609d",
+                "sha256:9596c70c860cbce19537354db95b180351959b4cd14a70db6ab1d1432668c313",
+                "sha256:996e296d1dfe27c3e89efc26dbcc247f49c0801a9b5e22e2b39f5b983cf5c2f5",
+                "sha256:a90ee3181c88aed0893bf537a50ad547655f5d555a5b731215a5fe1946d2f3db",
+                "sha256:ac003d49bbd62f6712b5631487049cee4f0a07445dd31c6d05e5724e33689fca",
+                "sha256:c421b46ebf81ad4498de480640ce1a47ac15dfd3938dfc2e1c0846cb5cdb0c59",
+                "sha256:d3852c1f8fe6ca2f5c7942c845dc6d1f6140aa7860fe3500eac3ac88875d1dd4",
+                "sha256:d8bfe5c32b4b5aaa91a5c1c7912fe3e5d13e7671f3468ee7742ec71ca192a975",
+                "sha256:f786cb013ebfd3fb23ddb46285902663e31256220b12b368f8c36e859a77ebc9"
+            ],
+            "index": "pypi",
+            "version": "==5.1"
+        },
+        "pyinstaller-hooks-contrib": {
+            "hashes": [
+                "sha256:90a05207ceea2f8c166f12c3add46e24c0ed6a78234e5f99320f8683d56e0dec",
+                "sha256:d0ff4c13eda0104db6eb43c60641c19cdf2bc2d6a2a1f0855d26629c3dacc8b7"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2022.5"
+        },
+        "pywin32-ctypes": {
+            "hashes": [
+                "sha256:24ffc3b341d457d48e8922352130cf2644024a4ff09762a2261fd34c36ee5942",
+                "sha256:9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"
+            ],
+            "markers": "sys_platform == 'win32'",
+            "version": "==0.2.0"
+        },
+        "setuptools": {
+            "hashes": [
+                "sha256:68e45d17c9281ba25dc0104eadd2647172b3472d9e01f911efa57965e8d51a36",
+                "sha256:a43bdedf853c670e5fed28e5623403bad2f73cf02f9a2774e91def6bda8265a7"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==62.3.2"
         },
         "tomli": {
             "hashes": [

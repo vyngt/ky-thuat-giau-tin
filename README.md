@@ -1,13 +1,6 @@
-Play:
+Cách dùng:
 
 ```
-python -i main.py
->>> e = Encoder(message="this is data", key="my_key",image="images/original.png")
->>> e.encode()
-'bydRVLwjuA.png'
->>> d = Decoder(key="my_key", image="bydRVLwjuA.png")
->>> d.decode()
-'this is data'
->>> d.get_data()
-'this is data'
+steganography -m "my secret data" -k mykey -i "images/original.png"
+steganography -k mykey -i "images/modified.png" --option "decode"
 ```

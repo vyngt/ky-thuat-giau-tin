@@ -5,6 +5,7 @@
     "encryptor",
     "fernet",
     "getdata",
+    "onefile",
     "putpixel",
     "stega",
     "Steganography",
